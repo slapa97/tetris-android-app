@@ -22,10 +22,6 @@ public class Game {
         return board.getBoardWithPiece();
     }
 
-    public Piece getNextPiece() {
-        return nextPiece;
-    }
-
     public long getIterationDelay() {
         return (long) (0.5 * 1000);
     }

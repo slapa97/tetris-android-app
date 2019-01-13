@@ -19,9 +19,6 @@ public class Piece {
         return new Piece(pieceType, pieceType.getPoints(), true);
     }
 
-    public static Piece getPiece(PieceType pieceType) {
-        return new Piece(pieceType, pieceType.getPoints(), true);
-    }
 
     public PieceType getType() {
         return type;

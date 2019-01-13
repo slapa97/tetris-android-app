@@ -12,8 +12,6 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.*;
 
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -153,10 +151,8 @@ public class Tetris extends Canvas {
     public void draw() {
         Graphics2D g = getGameGraphics();
         drawEmptyBoard(g);
-        drawPiecePreviewBox(g);
         if (game.isPlaying()) {
             drawCells(g);
-            drawPiecePreview(g, game.getNextPiece().getType());
         }
         if (game.isGameOver()) {
             drawCells(g);
@@ -182,7 +178,6 @@ public class Tetris extends Canvas {
 
     private void drawEmptyBoard(Graphics2D g) {
         g.setColor(Color.BLACK);
-//        g.fillRect(0, 0, 800, 600);
         g.fillRect(0, 0, 1000, 800);
         g.setColor(Color.GRAY);
         g.drawRect(BOARD_CORNER_X - 1, BOARD_CORNER_Y - 1, 10 * PIECE_WIDTH + 2, 20 * PIECE_WIDTH + 2);
@@ -203,31 +198,16 @@ public class Tetris extends Canvas {
     }
 
     private String getScore() {
-        if (game.getTotalScore() < 10) {
+        if (game.getTotalScore() < 100) {
             return String.format("0000000%1s", game.getTotalScore());
-        } else if (game.getTotalScore() > 10) {
-            return String.format("000000%1s", game.getTotalScore());
         } else if (game.getTotalScore() > 100) {
-            return String.format("0000%1s", game.getTotalScore());
+            return String.format("000000%1s", game.getTotalScore());
         } else if (game.getTotalScore() > 1000) {
             return String.format("0000%1s", game.getTotalScore());
         } else if (game.getTotalScore() > 10000) {
             return String.format("000%1s", game.getTotalScore());
         } else {
             return String.format("00%1s", game.getTotalScore());
-        }
-    }
-
-    private void drawPiecePreviewBox(Graphics2D g) {
-        g.setFont(new Font("Dialog", Font.PLAIN, 16));
-        g.setColor(Color.RED);
-        g.drawString("Next:", 50, 420);
-    }
-
-
-    private void drawPiecePreview(Graphics2D g, PieceType type) {
-        for (Point p : type.getPoints()) {
-            drawBlock(g, 60 + p.x * PIECE_WIDTH, 380 + (3 - p.y) * 20, getPieceColor(type));
         }
     }
 
@@ -263,7 +243,19 @@ public class Tetris extends Canvas {
 
 
     public static void main(String[] args) {
-        new Tetris().gameLoop();
+
+        new Tetris().gameLoop(); ////nie wiem czemu nie dziala ????
+
+//        Menu menu = new Menu();
+//        menu.getB().addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent actionEvent) {
+//                new Tetris().gameLoop();
+//            }
+//        });
+
+
+
     }
 
 }
