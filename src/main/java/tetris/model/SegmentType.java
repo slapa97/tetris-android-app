@@ -3,7 +3,7 @@ package main.java.tetris.model;
 import java.awt.Point;
 import java.util.Random;
 
-public enum PieceType {
+public enum SegmentType {
     
     O(0, p(-1, 0), p(0, 0),  p(-1, -1), p(0, -1)),
     I(2, p(-2, 0), p(-1, 0), p(0, 0),   p(1, 0)),
@@ -17,13 +17,13 @@ public enum PieceType {
     private final int maxOrientations;
     private final Point points[];
 
-    PieceType(int maxOrientations, Point... points) {
+    SegmentType(int maxOrientations, Point... points) {
         this.maxOrientations = maxOrientations;
         this.points = points;
     }
 
-    public static PieceType getRandomPiece() {
-        return PieceType.values()[random.nextInt(PieceType.values().length)];
+    public static SegmentType getRandomPiece() {
+        return SegmentType.values()[random.nextInt(SegmentType.values().length)];
     }
 
     public Point[] getPoints() {

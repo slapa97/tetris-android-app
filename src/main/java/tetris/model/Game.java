@@ -4,7 +4,7 @@ public class Game {
 
 
     private final Board board;
-    private Piece nextPiece;
+    private Segment nextSegment;
 
     private boolean playing = false;
     private boolean paused = false;
@@ -38,8 +38,8 @@ public class Game {
     public void startGame() {
         paused = false;
         dropping = false;
-        nextPiece = Piece.getRandomPiece();
-        board.setCurrentPiece(Piece.getRandomPiece());
+        nextSegment = Segment.getRandomPiece();
+        board.setCurrentSegment(Segment.getRandomPiece());
         playing = true;
     }
 
@@ -69,8 +69,8 @@ public class Game {
                 gameOver = true;
             } else {
                 dropping = false;
-                board.setCurrentPiece(nextPiece);
-                nextPiece = Piece.getRandomPiece();
+                board.setCurrentSegment(nextSegment);
+                nextSegment = Segment.getRandomPiece();
                 totalScore = getScore();
                 freeFallIterations = 0;
             }

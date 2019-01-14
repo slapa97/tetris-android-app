@@ -2,25 +2,25 @@ package main.java.tetris.model;
 
 import java.awt.Point;
 
-public class Piece {
+public class Segment {
 
     private final Point points[];
-    private final PieceType type;
+    private final SegmentType type;
     private final boolean initialOrientation;
 
-    private Piece(PieceType pieceType, Point[] points, boolean initial) {
+    private Segment(SegmentType segmentType, Point[] points, boolean initial) {
         initialOrientation = initial;
         this.points = points;
-        this.type = pieceType;
+        this.type = segmentType;
     }
 
-    public static Piece getRandomPiece() {
-        PieceType pieceType = PieceType.getRandomPiece();
-        return new Piece(pieceType, pieceType.getPoints(), true);
+    public static Segment getRandomPiece() {
+        SegmentType segmentType = SegmentType.getRandomPiece();
+        return new Segment(segmentType, segmentType.getPoints(), true);
     }
 
 
-    public PieceType getType() {
+    public SegmentType getType() {
         return type;
     }
 
@@ -28,17 +28,17 @@ public class Piece {
         return points;
     }
 
-    public Piece rotate() {
+    public Segment rotate() {
         if (type.getMaxOrientations() == 0) {
             return this;
         } else if (type.getMaxOrientations() == 2) {
             if (initialOrientation) {
-                return new Piece(type, rotateRight(points), false);
+                return new Segment(type, rotateRight(points), false);
             } else {
-                return new Piece(type, rotateLeft(points), true);
+                return new Segment(type, rotateLeft(points), true);
             }
         }
-        return new Piece(type, rotateRight(points), true);
+        return new Segment(type, rotateRight(points), true);
     }
 
     private Point[] rotateLeft(Point toRotate[]) {

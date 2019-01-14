@@ -3,7 +3,7 @@ package main.java.tetris.view;
 import main.java.tetris.controller.ButtonListner;
 import main.java.tetris.model.BoardCell;
 import main.java.tetris.model.Game;
-import main.java.tetris.model.PieceType;
+import main.java.tetris.model.SegmentType;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -201,13 +201,17 @@ public class Tetris extends Canvas {
         if (game.getTotalScore() < 100) {
             return String.format("0000000%1s", game.getTotalScore());
         } else if (game.getTotalScore() > 100) {
-            return String.format("000000%1s", game.getTotalScore());
+            return String.format("00000%1s", game.getTotalScore());
         } else if (game.getTotalScore() > 1000) {
             return String.format("0000%1s", game.getTotalScore());
         } else if (game.getTotalScore() > 10000) {
             return String.format("000%1s", game.getTotalScore());
-        } else {
+        } else if (game.getTotalScore() > 100000) {
             return String.format("00%1s", game.getTotalScore());
+        } else if (game.getTotalScore() > 1000000) {
+            return String.format("0%1s", game.getTotalScore());
+        } else {
+            return String.format("00000%1s", game.getTotalScore());
         }
     }
 
@@ -215,11 +219,11 @@ public class Tetris extends Canvas {
         if (boardCell.isEmpty()) {
             return Color.BLACK;
         }
-        return getPieceColor(boardCell.getPieceType());
+        return getPieceColor(boardCell.getSegmentType());
     }
 
-    private Color getPieceColor(PieceType pieceType) {
-        switch (pieceType) {
+    private Color getPieceColor(SegmentType segmentType) {
+        switch (segmentType) {
             case I:
                 return Color.RED;
             case J:

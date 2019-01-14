@@ -4,26 +4,26 @@ import java.util.Arrays;
 
 public class BoardCell {
 
-    private final PieceType pieceType;
+    private final SegmentType segmentType;
 
     private BoardCell() {
-        pieceType = null;
+        segmentType = null;
     }
 
-    private BoardCell(PieceType type) {
-        pieceType = type;
+    private BoardCell(SegmentType type) {
+        segmentType = type;
     }
 
     public boolean isEmpty() {
-        return pieceType == null;
+        return segmentType == null;
     }
 
-    public PieceType getPieceType() {
-        return pieceType;
+    public SegmentType getSegmentType() {
+        return segmentType;
     }
 
-    public static BoardCell getCell(PieceType pieceType) {
-        return new BoardCell(pieceType);
+    public static BoardCell getCell(SegmentType segmentType) {
+        return new BoardCell(segmentType);
     }
 
     public static BoardCell[] getEmptyArray(int size) {

@@ -35,7 +35,7 @@ public class Board {
 
     private Point pieceCenter = new Point(DROP_X, DROP_Y);
 
-    private Piece currentPiece;
+    private Segment currentSegment;
 
     private BoardCell[][] board = new BoardCell[WIDTH][HEIGHT];
 
@@ -100,27 +100,27 @@ public class Board {
     }
 
     public void rotate() {
-        Piece rot = currentPiece.rotate();
+        Segment rot = currentSegment.rotate();
         if (fit(rot.getPoints(), 0, 0)) {
 
-            currentPiece = rot;
+            currentSegment = rot;
         }
     }
 
     public void moveLeft() {
-        if (fit(currentPiece.getPoints(), -1, 0)) {
+        if (fit(currentSegment.getPoints(), -1, 0)) {
             mv( -1, 0);
         }
     }
 
     public void moveRight() {
-        if (fit(currentPiece.getPoints(), 1, 0)) {
+        if (fit(currentSegment.getPoints(), 1, 0)) {
             mv(1, 0);
         }
     }
 
     public boolean canCurrentPieceMoveDown() {
-        return fit(currentPiece.getPoints(), 0, -1);
+        return fit(currentSegment.getPoints(), 0, -1);
     }
 
     public void moveDown() {
@@ -155,20 +155,20 @@ public class Board {
         }
 
         // add piece
-        for (Point point : currentPiece.getPoints()) {
+        for (Point point : currentSegment.getPoints()) {
             int x = point.x + pieceCenter.x;
             int y = point.y + pieceCenter.y;
-            dest[x][y] = BoardCell.getCell(currentPiece.getType());
+            dest[x][y] = BoardCell.getCell(currentSegment.getType());
         }
 
         return dest;
     }
 
     private void addPieceToBoard() {
-        for (Point point : currentPiece.getPoints()) {
+        for (Point point : currentSegment.getPoints()) {
             int x = pieceCenter.x + point.x;
             int y = pieceCenter.y + point.y;
-            board[x][y] = BoardCell.getCell(currentPiece.getType());
+            board[x][y] = BoardCell.getCell(currentSegment.getType());
         }
     }
 
@@ -176,11 +176,11 @@ public class Board {
         pieceCenter = new Point(pieceCenter.x + moveX, pieceCenter.y + moveY);
     }
 
-    public void setCurrentPiece(Piece piece) {
-        if (currentPiece != null) {
+    public void setCurrentSegment(Segment segment) {
+        if (currentSegment != null) {
             addPieceToBoard();
         }
-        currentPiece = piece;
+        currentSegment = segment;
         resetPieceCenter();
     }
 
