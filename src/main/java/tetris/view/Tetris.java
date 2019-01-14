@@ -1,7 +1,7 @@
 package main.java.tetris.view;
 
-import main.java.tetris.controller.ButtonListner;
 import main.java.tetris.model.BoardCell;
+import main.java.tetris.controller.ButtonListner;
 import main.java.tetris.model.Game;
 import main.java.tetris.model.SegmentType;
 
@@ -32,7 +32,7 @@ public class Tetris extends Canvas {
     JButton downButton;
     JButton upButton;
 
-    public Tetris() {
+    public Tetris(){
         JFrame container = new JFrame("Tetris,");
         JPanel panel = (JPanel) container.getContentPane();
 
